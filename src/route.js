@@ -4,6 +4,20 @@ const ShortsController = require('./controllers/ShortsController')
 const BlogController = require('./Controller/BlogController')
 const Blog = require('./models/Blog.js')
 
+
+let multer = require("multer")
+
+let storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, "./public/uploads");
+    },
+    filename: function (req, file, callback) {
+        console.log(file);
+        callback(null, file.originalname);
+    }
+})
+let upload = multer({ storage: storage }).array("userPhoto", 10)
+
 module.exports = (app) => {
   app.post('/user', UserController.create)
   app.put('/user/:userId', UserController.put)
