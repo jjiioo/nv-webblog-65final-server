@@ -1,24 +1,24 @@
 const UserController = require('./controllers/UserController')
 const CommentController = require('./controllers/CommentController')
 const ShortsController = require('./controllers/ShortsController')
-
-
-
-
+const BlogController = require('./Controller/BlogController')
+const Blog = require('./models/Blog.js')
 
 module.exports = (app) => {
   app.post('/user', UserController.create)
-  
   app.put('/user/:userId', UserController.put)
-  
   app.delete('/user/:userId', UserController.remove)
-  
   app.get('/user/:userId', UserController.show)
-  
   app.get('/users', UserController.index)
 
+  app.post('/Blog',BlogController.create)
+  app.put('/Blog/:BlogId',BlogController.put)
+  app.delete('/Blog/:BlogId',BlogController.remove)
+  app.get('/Blog/:BlogId',BlogController.show)
+  app.get('/Blogs',BlogController.index)
 
 
+  
   app.post('/Shorts',ShortsController.create)
   app.put('/Shorts/:ShortsId',ShortsController.put)
   app.delete('/Shorts/:ShortsId',ShortsController.remove)
